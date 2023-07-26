@@ -45,35 +45,18 @@ function App() {
   } else {
     return (
       <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-        <Stack
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2} >
-          {characters.results.map(item => (
-            <Card key={item.id} sx={{ minWidth: 275 }}>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  {item.name}
-                </Typography>
-                {/* <Typography variant="h5" component="div">
-                be{bull}nev{bull}o{bull}lent
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                adjective
-              </Typography>
-              <Typography variant="body2">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
-              </Typography> */}
-              </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
-            </Card>
-          ))}
-        </Stack>
+        {characters.results.map(item => (
+          <StyledPaper sx={{ my: 1, mx: 'auto', p: 2 }}>
+          <Grid container wrap="nowrap" spacing={2}>
+            {/* <Grid item>
+              <Avatar>W</Avatar>
+            </Grid> */}
+            <Grid item xs zeroMinWidth>
+              <Typography noWrap>{item.name}</Typography>
+            </Grid>
+          </Grid>
+        </StyledPaper>
+        ))}
       </Box>
     );
   }
