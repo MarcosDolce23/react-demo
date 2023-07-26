@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 function Tarjeta({items}) {
   return (
       items.results.map(item => (
-        <Grid key={item.id} item xs={12}>
+        <Grid key={item.id} item xs={12} onClick={() => alert(item.name)}>
           <Item>
             <Grid container wrap='nowrap' spacing={2}>
               <Grid item>
