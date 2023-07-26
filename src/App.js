@@ -1,12 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [item, setItems] = useState(null);
+  const [characters, setCharacters] = useState(null);
 
   useEffect(() => {
     fetch("https://rickandmortyapi.com/api/character")
@@ -14,13 +27,13 @@ function App() {
       .then(
         (result) => {
           setIsLoaded(true);
-          setItems(result);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    )
+          setCharacters(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }, [])
 
   if (error) {
@@ -29,13 +42,17 @@ function App() {
     return <div>Loading...</div>
   } else {
     return (
-      <ul>
-        {item.results.map(item => (
-          <li key={item.id}>
-            {item.name}
-          </li>
-        ))}
-      </ul>
+      <Box sx={{ width: '100%' }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          {characters.results.map(item => (
+            <Grid item xs={12}>
+              <Item>
+                <Typography noWrap>{item.name}</Typography>
+              </Item>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     );
   }
 }
