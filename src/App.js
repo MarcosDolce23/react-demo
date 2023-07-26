@@ -48,7 +48,14 @@ function App() {
           {characters.results.map(item => (
             <Grid item xs={12}>
               <Item>
-                <Typography noWrap>{item.name}</Typography>
+                <Grid container wrap="nowrap" spacing={2}>
+                  <Grid item>
+                    <Avatar>W</Avatar>
+                  </Grid>
+                  <Grid item xs zeroMinWidth>
+                    <Typography noWrap>{item.name}</Typography>
+                  </Grid>
+                </Grid>
               </Item>
             </Grid>
           ))}
