@@ -16,6 +16,26 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+function Tarjeta() {
+  return (
+    {
+      characters.results.map(item => (
+        <Grid key={item.id} item xs={12}>
+          <Item>
+            <Grid container wrap='nowrap' spacing={2}>
+              <Grid item>
+                <Avatar alt={item.name} src={item.image} />
+              </Grid>
+              <Grid item xs zeroMinWidth>
+                <Typography noWrap>{item.name}</Typography>
+              </Grid>
+            </Grid>
+          </Item>
+        </Grid>
+      ))
+    }
+  );
+};
 
 function App() {
   const [error, setError] = useState(null);
@@ -45,20 +65,7 @@ function App() {
     return (
       <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {characters.results.map(item => (
-            <Grid key={item.id} item xs={12}>
-              <Item>
-                <Grid container wrap='nowrap' spacing={2}>
-                  <Grid item>
-                    <Avatar alt={item.name} src={item.image} />
-                  </Grid>
-                  <Grid item xs zeroMinWidth>
-                    <Typography noWrap>{item.name}</Typography>
-                  </Grid>
-                </Grid>
-              </Item>
-            </Grid>
-          ))}
+          <Tarjeta />
         </Grid>
       </Box>
     );
