@@ -46,11 +46,11 @@ function App() {
       <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {characters.results.map(item => (
-            <Grid item xs={12}>
+            <Grid key={item.id} item xs={12}>
               <Item>
-                <Grid container wrap="nowrap" spacing={2}>
+                <Grid container wrap='nowrap' spacing={2}>
                   <Grid item>
-                    <Avatar>W</Avatar>
+                    <Avatar alt={item.name} src={item.image} />
                   </Grid>
                   <Grid item xs zeroMinWidth>
                     <Typography noWrap>{item.name}</Typography>
