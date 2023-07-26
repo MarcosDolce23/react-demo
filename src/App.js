@@ -3,13 +3,20 @@ import './App.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import { Stack } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  maxWidth: 400,
+  color: theme.palette.text.primary,
+}));
+
 
 function App() {
   const [error, setError] = useState(null);
@@ -37,7 +44,7 @@ function App() {
     return <div>Loading...</div>
   } else {
     return (
-      <Box sx={{ width: '85%' }}>
+      <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
         <Stack
           direction="column"
           justifyContent="center"
