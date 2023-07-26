@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -9,12 +9,12 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
+const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
-  padding: theme.spacing(2),
-  maxWidth: 400,
-  color: theme.palette.text.primary,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
 }));
 
 
@@ -44,19 +44,16 @@ function App() {
     return <div>Loading...</div>
   } else {
     return (
-      <Box sx={{ flexGrow: 1, overflow: 'hidden', px: 3 }}>
-        {characters.results.map(item => (
-          <StyledPaper sx={{ my: 1, mx: 'auto', p: 2 }}>
-          <Grid container wrap="nowrap" spacing={2}>
-            {/* <Grid item>
-              <Avatar>W</Avatar>
-            </Grid> */}
-            <Grid item xs zeroMinWidth>
-              <Typography noWrap>{item.name}</Typography>
+      <Box sx={{ width: '100%' }}>
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          {characters.results.map(item => (
+            <Grid item xs={12}>
+              <Item>
+                <Typography noWrap>{item.name}</Typography>
+              </Item>
             </Grid>
-          </Grid>
-        </StyledPaper>
-        ))}
+          ))}
+        </Grid>
       </Box>
     );
   }
