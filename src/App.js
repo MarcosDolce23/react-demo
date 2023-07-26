@@ -37,7 +37,7 @@ function App() {
     return <div>Loading...</div>
   } else {
     return (
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '85%' }}>
         <Stack
           direction="column"
           justifyContent="center"
