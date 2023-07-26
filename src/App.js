@@ -47,6 +47,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [characters, setCharacters] = useState(null);
   const [open, setOpen] = useState(false);
+  const [selectCharacter, setSelectedCharacter] = useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -54,6 +55,10 @@ function App() {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSelectCharacter = (index) => {
+    setSelectedCharacter(characters.results[index]);
   };
 
   useEffect(() => {
@@ -92,8 +97,7 @@ function App() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            {selectCharacter}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
