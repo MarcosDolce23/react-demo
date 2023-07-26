@@ -23,10 +23,10 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function Tarjeta({items}) {
+function Tarjeta({items, handleOpen}) {
   return (
       items.results.map(item => (
-        <Grid key={item.id} item xs={12} onClick={() => alert(item.name)}>
+        <Grid key={item.id} item xs={12} onClick={handleOpen}>
           <Item>
             <Grid container wrap='nowrap' spacing={2}>
               <Grid item>
@@ -79,7 +79,7 @@ function App() {
     return (
       <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Tarjeta items={characters} />
+          <Tarjeta items={characters} handleOpen={handleClickOpen} />
         </Grid>
         <Dialog
         open={open}
@@ -88,7 +88,7 @@ function App() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          {"¿Quién es este personaje?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -97,9 +97,8 @@ function App() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
-            Agree
+            Aceptar
           </Button>
         </DialogActions>
       </Dialog>
