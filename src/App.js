@@ -16,10 +16,9 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function Tarjeta() {
+function Tarjeta({items}) {
   return (
-    {
-      characters.results.map(item => (
+      items.results.map(item => (
         <Grid key={item.id} item xs={12}>
           <Item>
             <Grid container wrap='nowrap' spacing={2}>
@@ -33,7 +32,6 @@ function Tarjeta() {
           </Item>
         </Grid>
       ))
-    }
   );
 };
 
@@ -65,7 +63,7 @@ function App() {
     return (
       <Box sx={{ width: '100%' }}>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Tarjeta />
+          <Tarjeta items={characters} />
         </Grid>
       </Box>
     );
