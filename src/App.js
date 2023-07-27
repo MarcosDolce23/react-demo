@@ -25,8 +25,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function Tarjeta({items, handleOpen}) {
   return (
-      items.results.map(item => (
-        <Grid key={item.id} item xs={12} onClick={handleOpen}>
+      items.results.map( (item, i) => (
+        <Grid key={item.id} item xs={12} onClick={() => handleOpen(i)}>
           <Item>
             <Grid container wrap='nowrap' spacing={2}>
               <Grid item>
@@ -49,7 +49,8 @@ function App() {
   const [open, setOpen] = useState(false);
   const [selectCharacter, setSelectedCharacter] = useState(null);
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (index) => {
+    handleSelectCharacter(index);
     setOpen(true);
   };
 
@@ -58,7 +59,7 @@ function App() {
   };
 
   const handleSelectCharacter = (index) => {
-    setSelectedCharacter(characters.results[index]);
+    setSelectedCharacter(characters.results[index].name);
   };
 
   useEffect(() => {
