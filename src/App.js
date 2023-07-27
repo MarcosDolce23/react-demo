@@ -23,22 +23,47 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function Tarjeta({items, handleOpen}) {
+function Tarjeta({ items, handleOpen }) {
   return (
-      items.results.map( (item, i) => (
-        <Grid key={item.id} item xs={12} onClick={() => handleOpen(i)}>
-          <Item>
-            <Grid container wrap='nowrap' spacing={2}>
-              <Grid item>
-                <Avatar alt={item.name} src={item.image} />
-              </Grid>
-              <Grid item xs zeroMinWidth>
-                <Typography noWrap>{item.name}</Typography>
-              </Grid>
+    items.results.map((item, i) => (
+      <Grid key={item.id} item xs={12} onClick={() => handleOpen(i)}>
+        <Item>
+          <Grid container wrap='nowrap' spacing={2}>
+            <Grid item>
+              <Avatar alt={item.name} src={item.image} />
             </Grid>
-          </Item>
-        </Grid>
-      ))
+            <Grid item xs zeroMinWidth>
+              <Typography noWrap>{item.name}</Typography>
+            </Grid>
+          </Grid>
+        </Item>
+      </Grid>
+    ))
+  );
+};
+
+function MyDialog() {
+  return (
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        {"¿Quién es este personaje?"}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          {selectCharacter}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} autoFocus>
+          Aceptar
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 
@@ -87,26 +112,6 @@ function App() {
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Tarjeta items={characters} handleOpen={handleClickOpen} />
         </Grid>
-        <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"¿Quién es este personaje?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {selectCharacter}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} autoFocus>
-            Aceptar
-          </Button>
-        </DialogActions>
-      </Dialog>
       </Box>
     );
   }
