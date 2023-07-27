@@ -42,10 +42,10 @@ function Tarjeta({ items, handleOpen }) {
   );
 };
 
-function MyDialog() {
+function MyDialog({isOpen, handleClose, character}) {
   return (
     <Dialog
-      open={open}
+      open={isOpen}
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
@@ -55,7 +55,7 @@ function MyDialog() {
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {selectCharacter}
+          {character}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -79,7 +79,7 @@ function App() {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleClickClose = () => {
     setOpen(false);
   };
 
@@ -112,6 +112,7 @@ function App() {
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Tarjeta items={characters} handleOpen={handleClickOpen} />
         </Grid>
+        <MyDialog isOpen={open} handleClose={handleClickClose} character={selectCharacter} />
       </Box>
     );
   }
