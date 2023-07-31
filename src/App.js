@@ -42,7 +42,7 @@ function Tarjeta({ items, handleOpen }) {
   );
 };
 
-function MyDialog({isOpen, handleClose, character}) {
+function MyDialog({isOpen, handleClose, id}) {
   return (
     <Dialog
       open={isOpen}
@@ -51,11 +51,11 @@ function MyDialog({isOpen, handleClose, character}) {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">
-        {"¿Quién es este personaje?"}
+        {"¿Cuál es el ID de este personaje?"}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {character}
+          {id}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -84,7 +84,7 @@ function App() {
   };
 
   const handleSelectCharacter = (index) => {
-    setSelectedCharacter(characters.results[index].name);
+    setSelectedCharacter(characters.results[index].id);
   };
 
   useEffect(() => {
@@ -112,7 +112,7 @@ function App() {
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Tarjeta items={characters} handleOpen={handleClickOpen} />
         </Grid>
-        <MyDialog isOpen={open} handleClose={handleClickClose} character={selectCharacter} />
+        <MyDialog isOpen={open} handleClose={handleClickClose} id={selectCharacter} />
       </Box>
     );
   }
