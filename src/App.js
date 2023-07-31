@@ -15,6 +15,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+import { Outlet, Link } from 'react-router-dom';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -109,6 +111,11 @@ function App() {
   } else {
     return (
       <Box sx={{ width: '100%' }}>
+        <div>
+          <Link to={'contacts'}>Contacts</Link>
+          <Link to={'home'}>Home</Link>
+          <Link to={'about'}>About</Link>
+        </div>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Tarjeta items={characters} handleOpen={handleClickOpen} />
         </Grid>
