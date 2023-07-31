@@ -6,12 +6,17 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './error-page';
+import Contact from './contact';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: 'contacts',
+    element: <Contact />
   }
 ]);
 
