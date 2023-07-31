@@ -5,11 +5,13 @@ import reportWebVitals from './reportWebVitals';
 import { StyledEngineProvider } from '@mui/material/styles';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ErrorPage from './error-page';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <App />,
+    errorElement: <ErrorPage />
   }
 ]);
 
