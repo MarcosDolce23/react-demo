@@ -18,6 +18,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Outlet, Link } from 'react-router-dom';
 
 import Sidebar from './components/sidebar';
+import TopMenu from './components/topMenu';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -114,6 +115,7 @@ function App() {
     return (
       <Box sx={{ width: '100%' }}>
         <Sidebar></Sidebar>
+        <TopMenu></TopMenu>
         <div>
           <Link to={'contacts'}>Contacts</Link>
           <Link to={'home'}>Home</Link>
