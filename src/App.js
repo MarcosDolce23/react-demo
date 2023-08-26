@@ -15,8 +15,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { Outlet, Link } from 'react-router-dom';
-
 import Sidebar from './components/sidebar';
 import TopMenu from './components/topMenu';
 
@@ -116,11 +114,6 @@ function App() {
       <Box sx={{ width: '100%' }}>
         <Sidebar></Sidebar>
         <TopMenu></TopMenu>
-        <div>
-          <Link to={'contacts'}>Contacts</Link>
-          <Link to={'home'}>Home</Link>
-          <Link to={'about'}>About</Link>
-        </div>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Tarjeta items={characters} handleOpen={handleClickOpen} />
         </Grid>
