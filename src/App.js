@@ -45,7 +45,7 @@ function Tarjeta({ items, handleOpen }) {
   );
 };
 
-function MyDialog({isOpen, handleClose, id}) {
+function MyDialog({ isOpen, handleClose, id }) {
   return (
     <Dialog
       open={isOpen}
@@ -111,14 +111,16 @@ function App() {
     return <div>Loading...</div>
   } else {
     return (
-      <Box sx={{ width: '100%' }}>
+      <>
         <Sidebar></Sidebar>
         <TopMenu></TopMenu>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Tarjeta items={characters} handleOpen={handleClickOpen} />
-        </Grid>
-        <MyDialog isOpen={open} handleClose={handleClickClose} id={selectCharacter} />
-      </Box>
+        <Box sx={{ width: '100%', marginTop: "100px" }} className="w3-main w3-content w3-padding">
+          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <Tarjeta items={characters} handleOpen={handleClickOpen} />
+          </Grid>
+          <MyDialog isOpen={open} handleClose={handleClickClose} id={selectCharacter} />
+        </Box>
+      </>
     );
   }
 }

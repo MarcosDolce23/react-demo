@@ -1,4 +1,6 @@
 import { Form } from "react-router-dom";
+import Sidebar from "./components/sidebar";
+import TopMenu from "./components/topMenu";
 
 export default function Contact() {
   const contact = {
@@ -11,7 +13,10 @@ export default function Contact() {
   };
 
   return (
-    <div id="contact">
+    <>
+      <Sidebar></Sidebar>
+      <TopMenu></TopMenu>
+    <div id="contact" style={{ width: '100%', marginTop: "100px" }} className="w3-main w3-content w3-padding">
       <div>
         <img
           key={contact.avatar}
@@ -46,6 +51,7 @@ export default function Contact() {
 
       </div>
     </div>
+    </>
   );
 }
 
