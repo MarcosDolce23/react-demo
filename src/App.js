@@ -19,6 +19,8 @@ import Sidebar from './components/sidebar';
 import TopMenu from './components/topMenu';
 import Pagination from './components/paginations';
 
+import { Outlet, Link } from 'react-router-dom';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -158,6 +160,7 @@ function App() {
           <MyDialog isOpen={open} handleClose={handleClickClose} id={selectCharacter} />
         </Box>
         <Pagination prevPage={prevPage} nextPage={nextPage}></Pagination>
+        <Link to={"/details/1"}>test</Link>
       </>
     );
   }
