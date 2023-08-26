@@ -17,6 +17,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import { Outlet, Link } from 'react-router-dom';
 
+import Sidebar from './components/sidebar';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -111,6 +113,7 @@ function App() {
   } else {
     return (
       <Box sx={{ width: '100%' }}>
+        <Sidebar></Sidebar>
         <div>
           <Link to={'contacts'}>Contacts</Link>
           <Link to={'home'}>Home</Link>
