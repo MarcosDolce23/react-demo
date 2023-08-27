@@ -6,7 +6,7 @@ export default function About() {
     <>
       <Sidebar></Sidebar>
       <TopMenu></TopMenu>
-      <div id="about" style={{ width: '100%', marginTop: "100px" }} classNameName="w3-main w3-content w3-padding">
+      <div id="about" style={{ width: '100%', marginTop: "100px" }} className="w3-main w3-content w3-padding">
         <div className="w3-container w3-padding-32 w3-center">
           <h3>Acerca de mí, El Programador</h3>
           <img src="https://www.w3schools.com/w3images/chef.jpg" alt="Me" className="w3-image" style={{ display: "block", margin: "auto", width: "800px", height: "533px" }}></img>
