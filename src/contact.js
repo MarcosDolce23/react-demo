@@ -47,11 +47,48 @@ export default function Contact() {
 
           {contact.twitter && (
             <p>
+            <span>Twitter: </span>
               <a
                 target="_blank"
                 href={`https://twitter.com/${contact.twitter}`}
               >
                 {contact.twitter}
+              </a>
+            </p>
+          )}
+
+          {contact.facebook && (
+            <p>
+            <span>Facebook: </span>
+              <a
+                target="_blank"
+                href={`https://www.facebook.com/${contact.facebook}`}
+              >
+                {contact.facebook}
+              </a>
+            </p>
+          )}
+
+          {contact.github && (
+            <p>
+            <span>GitHub: </span>
+              <a
+                target="_blank"
+                href={`https://github.com/${contact.github}`}
+              >
+                {contact.github}
+              </a>
+            </p>
+          )}
+
+          {contact.glo && (
+            <p>
+            <span>Glo: </span>
+              <a
+                target="_blank"
+                href={`https://glo.globallogic.com/users/profile/${contact.glo}`}
+              >
+                {contact.glo}
               </a>
             </p>
           )}
