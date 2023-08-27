@@ -17,6 +17,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import Sidebar from './components/sidebar';
 import TopMenu from './components/topMenu';
+import Pagination from './components/paginations';
+
+import { Outlet, Link } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -29,17 +32,19 @@ const Item = styled(Paper)(({ theme }) => ({
 function Tarjeta({ items, handleOpen }) {
   return (
     items.results.map((item, i) => (
-      <Grid key={item.id} item xs={12} onClick={() => handleOpen(i)}>
-        <Item>
-          <Grid container wrap='nowrap' spacing={2}>
-            <Grid item>
-              <Avatar alt={item.name} src={item.image} />
+      <Grid key={item.id} item xs={12}>
+        <Link to={"/details/" + item.id}>
+          <Item>
+            <Grid container wrap='nowrap' spacing={2}>
+              <Grid item>
+                <Avatar alt={item.name} src={item.image} />
+              </Grid>
+              <Grid item xs zeroMinWidth>
+                <Typography noWrap>{item.name}</Typography>
+              </Grid>
             </Grid>
-            <Grid item xs zeroMinWidth>
-              <Typography noWrap>{item.name}</Typography>
-            </Grid>
-          </Grid>
-        </Item>
+          </Item>
+        </Link>
       </Grid>
     ))
   );
@@ -90,6 +95,42 @@ function App() {
     setSelectedCharacter(characters.results[index].id);
   };
 
+  const prevPage = () => {
+    if (!characters.info.prev)
+      return
+
+    fetch(characters.info.prev)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setCharacters(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  };
+
+  const nextPage = () => {
+    if (!characters.info.next)
+      return
+
+    fetch(characters.info.next)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setCharacters(result);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  };
+
   useEffect(() => {
     fetch("https://rickandmortyapi.com/api/character")
       .then(res => res.json())
@@ -120,6 +161,7 @@ function App() {
           </Grid>
           <MyDialog isOpen={open} handleClose={handleClickClose} id={selectCharacter} />
         </Box>
+        <Pagination prevPage={prevPage} nextPage={nextPage}></Pagination>
       </>
     );
   }
