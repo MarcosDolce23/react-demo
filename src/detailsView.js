@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import Sidebar from "./components/sidebar";
 import TopMenu from "./components/topMenu";
 
 import { useParams } from 'react-router-dom';

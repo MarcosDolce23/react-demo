@@ -7,7 +7,6 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './error-page';
 import Contact from './contact';
-import Home from './home';
 import About from './about';
 import DetailsView from './detailsView';
 
@@ -20,10 +19,6 @@ const router = createBrowserRouter([
   {
     path: 'contacts',
     element: <Contact />
-  },
-  {
-    path: 'home',
-    element: <Home />
   },
   {
     path: 'about',

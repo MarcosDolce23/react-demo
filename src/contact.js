@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import Sidebar from "./components/sidebar";
 import TopMenu from "./components/topMenu";
 
 export default function Contact() {
