@@ -24,9 +24,14 @@
     font-size: 18px;
   }
   
-  a {
+  span {
     text-decoration: none;
     font-size: 22px;
+    color: black;
+  }
+  a {
+    text-decoration: none;
+    font-size: 18px;
     color: black;
   }
   
