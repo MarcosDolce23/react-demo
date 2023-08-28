@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import Sidebar from "./components/sidebar";
 import TopMenu from "./components/topMenu";
@@ -23,7 +24,6 @@ export default function Contact() {
 
   return (
     <>
-      <Sidebar></Sidebar>
       <TopMenu></TopMenu>
       <div id="contact" style={{ width: '100%', marginTop: "100px" }} className="w3-main w3-content w3-padding">
         <div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -153,7 +154,6 @@ function App() {
   } else {
     return (
       <>
-        <Sidebar></Sidebar>
         <TopMenu></TopMenu>
         <Box sx={{ width: '100%', marginTop: "100px" }} className="w3-main w3-content w3-padding">
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>

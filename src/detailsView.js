@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -37,7 +38,6 @@ export default function DetailsView() {
 
         return (
             <>
-                <Sidebar></Sidebar>
                 <TopMenu></TopMenu>
                 <div className="card" style={{ width: '100%', marginTop: "100px" }} classNameName="w3-main w3-content w3-padding">
                     <img src={character.image} alt="John" style={{ width: "100%" }}></img>
