@@ -32,8 +32,7 @@ const Item = styled(Paper)(({ theme }) => ({
 function Tarjeta({ items, handleOpen }) {
   return (
     items.results.map((item, i) => (
-      <Grid key={item.id} item xs={12}>
-        <Link to={"/details/" + item.id}>
+      <Grid key={item.id} item xs={12} onClick={() => handleOpen(i)}>
           <Item>
             <Grid container wrap='nowrap' spacing={2}>
               <Grid item>
@@ -44,7 +43,6 @@ function Tarjeta({ items, handleOpen }) {
               </Grid>
             </Grid>
           </Item>
-        </Link>
       </Grid>
     ))
   );
