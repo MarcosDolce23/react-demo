@@ -16,7 +16,6 @@ export default function Sidebar({ handleToggle, showed }) {
             <Box
                 sx={{ width: 250 }}
                 role="presentation"
-                // onClick={handleToggle}
             >
                 <List>
                     <ListItem key={"Home"} disablePadding>
@@ -34,7 +33,7 @@ export default function Sidebar({ handleToggle, showed }) {
                         </Link>
                     </ListItem>
                     <ListItem key={"Contact"} disablePadding>
-                        <Link onClick={handleToggle} to={'/contacts'}>
+                        <Link onClick={handleToggle} to={'/contact'}>
                             <ListItemButton>
                                 <ListItemText primary={"Contacto"} />
                             </ListItemButton>
