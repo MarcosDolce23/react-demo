@@ -1,7 +1,7 @@
+import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import Sidebar from "./components/sidebar";
 import TopMenu from "./components/topMenu";
 
 import { useParams } from 'react-router-dom';
@@ -37,14 +37,16 @@ export default function DetailsView() {
 
         return (
             <>
-                <Sidebar></Sidebar>
                 <TopMenu></TopMenu>
-                <div className="card" style={{ width: '100%', marginTop: "100px" }} classNameName="w3-main w3-content w3-padding">
-                    <img src={character.image} alt="John" style={{ width: "100%" }}></img>
-                    <h1>{character.name}</h1>
-                    <p className="title">{character.status}</p>
-                    <p>{character.species}</p>
-                    <p>{character.gender}</p>
+                <div style={{ marginTop: "30px" }}>
+                    <div className="card">
+                        <img src={character.image} alt="John" style={{ width: "100%" }}></img>
+                        <h1>{character.name}</h1>
+                        <p >{character.status}</p>
+                        <p>{character.species}</p>
+                        <p>{character.gender}</p>
+                        <p className='button'>{character.origin.name}</p>
+                    </div>
                 </div>
             </>
         );

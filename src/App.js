@@ -1,77 +1,34 @@
+import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
 
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-
-import Sidebar from './components/sidebar';
 import TopMenu from './components/topMenu';
 import Pagination from './components/paginations';
 
-import { Outlet, Link } from 'react-router-dom';
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+import { Link } from 'react-router-dom';
 
 function Tarjeta({ items, handleOpen }) {
   return (
-    items.results.map((item, i) => (
-      <Grid key={item.id} item xs={12}>
-        <Link to={"/details/" + item.id}>
-          <Item>
-            <Grid container wrap='nowrap' spacing={2}>
-              <Grid item>
-                <Avatar alt={item.name} src={item.image} />
-              </Grid>
-              <Grid item xs zeroMinWidth>
-                <Typography noWrap>{item.name}</Typography>
-              </Grid>
-            </Grid>
-          </Item>
+    <ImageList variant="masonry" cols={3} gap={8}>
+      {items.results.map((item, i) => (
+        <Link key={item.id} to={"/details/" + item.id}>
+          <ImageListItem>
+            <img
+              src={`${item.image}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              alt={item.name}
+              loading="lazy"
+            />
+            <ImageListItemBar position="below" title={item.name} />
+          </ImageListItem>
         </Link>
-      </Grid>
-    ))
-  );
-};
-
-function MyDialog({ isOpen, handleClose, id }) {
-  return (
-    <Dialog
-      open={isOpen}
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <DialogTitle id="alert-dialog-title">
-        {"¿Cuál es el ID de este personaje?"}
-      </DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          {id}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} autoFocus>
-          Aceptar
-        </Button>
-      </DialogActions>
-    </Dialog>
+      ))}
+    </ImageList>
   );
 };
 
@@ -79,21 +36,6 @@ function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [characters, setCharacters] = useState(null);
-  const [open, setOpen] = useState(false);
-  const [selectCharacter, setSelectedCharacter] = useState(null);
-
-  const handleClickOpen = (index) => {
-    handleSelectCharacter(index);
-    setOpen(true);
-  };
-
-  const handleClickClose = () => {
-    setOpen(false);
-  };
-
-  const handleSelectCharacter = (index) => {
-    setSelectedCharacter(characters.results[index].id);
-  };
 
   const prevPage = () => {
     if (!characters.info.prev)
@@ -153,13 +95,9 @@ function App() {
   } else {
     return (
       <>
-        <Sidebar></Sidebar>
         <TopMenu></TopMenu>
-        <Box sx={{ width: '100%', marginTop: "100px" }} className="w3-main w3-content w3-padding">
-          <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            <Tarjeta items={characters} handleOpen={handleClickOpen} />
-          </Grid>
-          <MyDialog isOpen={open} handleClose={handleClickClose} id={selectCharacter} />
+        <Box className="w3-main w3-content w3-padding">
+          <Tarjeta items={characters} />
         </Box>
         <Pagination prevPage={prevPage} nextPage={nextPage}></Pagination>
       </>
