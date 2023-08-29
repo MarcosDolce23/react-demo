@@ -4,37 +4,33 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StyledEngineProvider } from '@mui/material/styles';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  useRoutes,
+} from "react-router-dom";
+
 import ErrorPage from './error-page';
 import Contact from './contact';
 import About from './about';
 import DetailsView from './detailsView';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: 'contact',
-    element: <Contact />
-  },
-  {
-    path: 'about',
-    element: <About />
-  },
-  {
-    path: 'details/:id',
-    element: <DetailsView />
-  }
-]);
+const Raiz = () => {
+  let routes = useRoutes([
+    {path: "/", element: <App />, errorElement: <ErrorPage />},
+    {path: "about", element: <About />},
+    {path: "contact", element: <Contact />},
+    {path: "details/:id", element: <DetailsView />}
+  ]);
+  return routes;
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
-      <RouterProvider router={router} />
+      <Router>
+        <Raiz />
+      </Router>
     </StyledEngineProvider>
   </React.StrictMode>
 );
