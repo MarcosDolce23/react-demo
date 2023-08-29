@@ -39,7 +39,7 @@ export default function DetailsView() {
             <>
                 <TopMenu></TopMenu>
                 <div style={{ marginTop: "30px" }}>
-                    <div class="card">
+                    <div className="card">
                         <img src={character.image} alt="John" style={{ width: "100%" }}></img>
                         <h1>{character.name}</h1>
                         <p >{character.status}</p>

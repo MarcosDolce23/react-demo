@@ -2,9 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -14,20 +12,12 @@ import Pagination from './components/paginations';
 
 import { Link } from 'react-router-dom';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
-
 function Tarjeta({ items, handleOpen }) {
   return (
     <ImageList variant="masonry" cols={3} gap={8}>
       {items.results.map((item, i) => (
-        <Link to={"/details/" + item.id}>
-          <ImageListItem key={item.id}>
+        <Link key={item.id} to={"/details/" + item.id}>
+          <ImageListItem>
             <img
               src={`${item.image}?w=248&fit=crop&auto=format`}
               srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
