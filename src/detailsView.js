@@ -38,7 +38,7 @@ export default function DetailsView() {
         return (
             <>
                 <TopMenu></TopMenu>
-                <div className="card" style={{ width: '100%', marginTop: "100px" }} classNameName="w3-main w3-content w3-padding">
+                <div id="card " style={{ width: '100%' }} className="w3-main w3-content w3-padding">
                     <img src={character.image} alt="John" style={{ width: "100%" }}></img>
                     <h1>{character.name}</h1>
                     <p className="title">{character.status}</p>
