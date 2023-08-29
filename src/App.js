@@ -12,30 +12,75 @@ import Pagination from './components/paginations';
 
 import { Link } from 'react-router-dom';
 
+//Ejercicio 1
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 function Tarjeta({ items, handleOpen }) {
   return (
     <ImageList variant="masonry" cols={3} gap={8}>
       {items.results.map((item, i) => (
-        <Link key={item.id} to={"/details/" + item.id}>
-          <ImageListItem>
-            <img
-              src={`${item.image}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.name}
-              loading="lazy"
-            />
-            <ImageListItemBar position="below" title={item.name} />
-          </ImageListItem>
-        </Link>
+        <ImageListItem onClick={() => handleOpen(i)}>
+          <img
+            src={`${item.image}?w=248&fit=crop&auto=format`}
+            srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            alt={item.name}
+            loading="lazy"
+          />
+          <ImageListItemBar position="below" title={item.name} />
+        </ImageListItem>
       ))}
     </ImageList>
   );
 };
+// Fin ejercicio 1
+
+// function Tarjeta({ items, handleOpen }) {
+//   return (
+//     <ImageList variant="masonry" cols={3} gap={8}>
+//       {items.results.map((item, i) => (
+//         <Link key={item.id} to={"/details/" + item.id}>
+//           <ImageListItem onClick={() => handleOpen(i)}>
+//             <img
+//               src={`${item.image}?w=248&fit=crop&auto=format`}
+//               srcSet={`${item.image}?w=248&fit=crop&auto=format&dpr=2 2x`}
+//               alt={item.name}
+//               loading="lazy"
+//             />
+//             <ImageListItemBar position="below" title={item.name} />
+//           </ImageListItem>
+//         </Link>
+//       ))}
+//     </ImageList>
+//   );
+// };
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [characters, setCharacters] = useState(null);
+
+  // Ejercicio 1
+  const [open, setOpen] = useState(false);
+  const [selectCharacter, setSelectedCharacter] = useState(null);
+
+  const handleClickOpen = (index) => {
+    handleSelectCharacter(index);
+    setOpen(true);
+  };
+
+  const handleClickClose = () => {
+    setOpen(false);
+  };
+
+  const handleSelectCharacter = (index) => {
+    setSelectedCharacter(characters.results[index].id);
+  };
+  // Fin ejercicio 1
 
   const prevPage = () => {
     if (!characters.info.prev)
@@ -97,8 +142,9 @@ function App() {
       <>
         <TopMenu></TopMenu>
         <Box className="w3-main w3-content w3-padding">
-          <Tarjeta items={characters} />
+          <Tarjeta items={characters} handleOpen={handleClickOpen} />
         </Box>
+        <MyDialog isOpen={open} handleClose={handleClickClose} id={selectCharacter} />
         <Pagination prevPage={prevPage} nextPage={nextPage}></Pagination>
       </>
     );
@@ -106,3 +152,31 @@ function App() {
 }
 
 export default App;
+
+
+// ejercicio 1
+
+function MyDialog({ isOpen, handleClose, id }) {
+  return (
+    <Dialog
+      open={isOpen}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        {"¿Cuál es el ID de este personaje?"}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          {id}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} autoFocus>
+          Aceptar
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
